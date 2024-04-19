@@ -1,10 +1,12 @@
-import Image from "next/image";
+'use client'
 import Main from "../components/main";
 
 export default function Home() {
   return (
     <>
-    <p>Teste</p>
+    <Main PageName="Principal">
+      <h1>Conteudo </h1>
+    </Main>
     </>
   );
 }
