@@ -5,6 +5,7 @@ import { navegationType } from "@/types/navegation";
 import { userType } from "@/types/user";
 import Image from "next/image";
 import userImg from "../../../../public/images/user.png";
+import logo from "../../../../public/images/logo.png";
 
 interface Props {
   PageName: string;
@@ -40,9 +41,11 @@ function Main({children, PageName}: Props) {
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      <Image
+                        className="h-10 w-10"
+                        src={logo}
+                        width={100}
+                        height={100}
                         alt="Ariclenes Pedro"
                       />
                     </div>

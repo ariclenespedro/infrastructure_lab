@@ -5,7 +5,8 @@ export default function Home() {
   return (
     <>
     <Main PageName="Principal">
-      <h1>Conteudo </h1>
+      <div className="bg-white"><h1>Conteudo </h1></div>
+      
     </Main>
     </>
   );
