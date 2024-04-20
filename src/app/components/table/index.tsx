@@ -1,40 +1,39 @@
+import React from "react";
 import Image from "next/image";
 import { schoolType } from "@/types/schools";
-import React from "react";
 
 interface TableDataStatsProps {
-  SchoolData: Array<schoolType>;
+  schoolData: Array<schoolType>;
+  headers: Array<string>;
 }
 
-
-const TableTwo: React.FC<TableDataStatsProps> = ({SchoolData}) => {
+const TableTwo: React.FC<TableDataStatsProps> = ({ schoolData, headers }) => {
   return (
     <div className="overflow-x-auto">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr className="bg-base-300">
-        <th></th>
-        <th>Designação</th>
-        <th>Email</th>
-        <th>Localização</th>
-        <th>Total de Infraestruturas</th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* row 1 */}
-      {SchoolData?.map((School, key) => (
-        <tr>
-            <th key={key}>1</th>
-            <td>{School.designation}</td>
-            <td>{School.email}</td>
-            <td>{School.location}</td>
-            <td>{School.total_infrastructure}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+      <table className="table">
+        <thead>
+          <tr className="bg-base-300">
+            {/* Renderizando cabeçalhos dinamicamente */}
+            {headers.map((header, index) => (
+              <th key={index}>{header}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {/* Renderizando dados */}
+          {schoolData.map((school, rowIndex) => (
+            <tr key={rowIndex}>
+              {/* Renderizando número da linha na primeira coluna */}
+              <td>{rowIndex + 1}</td>
+              {/* Mapeando os valores das outras colunas dinamicamente */}
+              {Object.values(school).map((value, cellIndex) => (
+                <td key={cellIndex}>{value}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

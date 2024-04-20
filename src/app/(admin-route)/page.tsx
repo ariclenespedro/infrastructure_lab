@@ -13,10 +13,13 @@ export default function Home() {
     total_infrastructure: 5
     },
   ];
+
+  const headers = ["#", "Designação", "Email", "Localização", "Total de Infraestruturas"];
+
   return (
     <>
     <Main PageName="Escolas">
-      <Table SchoolData={schools} />
+      <Table schoolData={schools} headers={headers} />
     </Main>
     </>
   );
