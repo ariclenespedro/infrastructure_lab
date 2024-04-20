@@ -20,7 +20,7 @@ import Modal from ".";
         onClick={() => setOpenModal(true)}
         className=" btn btn-primary"
       >
-        Nova Escola
+        Nova 
       </button>
     </>
     

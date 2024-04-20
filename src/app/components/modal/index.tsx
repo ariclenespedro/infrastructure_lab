@@ -44,7 +44,7 @@ export default function Modal({state, handleState}: any) {
                     </div>
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                       <Dialog.Title as="h3" className="dark:text-white text-base font-semibold leading-6 text-gray-900">
-                        Terminar sessão
+                        Registar Escola
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500 dark:text-white">
