@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { navegationType } from "@/types/navegation";
@@ -6,31 +6,47 @@ import { userType } from "@/types/user";
 import Image from "next/image";
 import userImg from "../../../../public/images/user.png";
 import logo from "../../../../public/images/logo.png";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Props {
   PageName: string;
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const user: userType = {
   name: "Dev Ariclenes",
   email: "pedroariclenes@gmail.com",
 };
-const navigation: navegationType[] = [
-  { name: "Principal", href: "#", current: true },
-  { name: "Salas", href: "#", current: false },
-];
-const userNavigation = [
-  { name: "Perfil", href: "#" },
-  { name: "Configurações", href: "#" },
-  { name: "Sair", href: "#" },
-];
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
+const Main: React.FC<Props> = ({ children, PageName }) => {
+  const [activeNavigation, setActiveNavigation] = useState<number | null>(0);
 
-function Main({children, PageName}: Props) {
+  const pathname = usePathname();
+
+  const navigation: navegationType[] = [
+    { name: "Escolas", href: "/", id: 0 },
+    { name: "Infraestruturas", href: "/infraestruturas", id: 1 },
+  ];
+
+  const handleNavigationClick = (id: number) => {
+    console.log(id);
+    setActiveNavigation(id);
+  };
+
+  
+  
+
+  const userNavigation = [
+    { name: "Perfil", href: "#" },
+    { name: "Configurações", href: "#" },
+    { name: "Sair", href: "#" },
+  ];
+  
+  function classNames(...classes: any) {
+    return classes.filter(Boolean).join(" ");
+  }
+
   return (
     <>
       <div className="min-h-full">
@@ -52,19 +68,18 @@ function Main({children, PageName}: Props) {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
-                            key={item.name}
+                          <Link
+                            key={item.id}
                             href={item.href}
-                            className={classNames(
-                              item.current
-                                ? "bg-gray-900 text-white"
-                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium"
-                            )}
-                            aria-current={item.current ? "page" : undefined}
+                            className={`
+                              ${pathname === item.href ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white"}
+                              rounded-md px-3 py-2 text-sm font-medium
+                            `}
+                            aria-current={pathname === item.href ? "page" : undefined}
+                            onClick={() => handleNavigationClick(item.id)}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -150,16 +165,15 @@ function Main({children, PageName}: Props) {
                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                   {navigation.map((item) => (
                     <Disclosure.Button
-                      key={item.name}
+                      key={item.id}
                       as="a"
                       href={item.href}
                       className={classNames(
-                        item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        activeNavigation === item.id ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
                         "block rounded-md px-3 py-2 text-base font-medium"
                       )}
-                      aria-current={item.current ? "page" : undefined}
+                      aria-current={activeNavigation === item.id ? "page" : undefined}
+                      onClick={() => handleNavigationClick(item.id)}
                     >
                       {item.name}
                     </Disclosure.Button>
@@ -226,6 +240,6 @@ function Main({children, PageName}: Props) {
       </div>
     </>
   );
-}
+};
 
 export default Main;
