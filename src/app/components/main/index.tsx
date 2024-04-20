@@ -8,6 +8,9 @@ import userImg from "../../../../public/images/user.png";
 import logo from "../../../../public/images/logo.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ButtonModal from "../modal/buttonModal";
+
+
 
 interface Props {
   PageName: string;
@@ -226,10 +229,14 @@ const Main: React.FC<Props> = ({ children, PageName }) => {
         </Disclosure>
 
         <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <div className=" flex justify-between mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               {PageName}
             </h1>
+            <div className="right-10">
+            <ButtonModal/>
+            </div>
+            
           </div>
         </header>
         <main>
