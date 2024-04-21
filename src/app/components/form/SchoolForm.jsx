@@ -25,7 +25,7 @@ const SchoolForm = ({ onCancel }) => {
     designation: Yup.string().required(
       "A designação da escola é um campo obrigatório"
     ),
-    email: Yup.number().required("O email é obrigatório"),
+    email: Yup.string().required("O email é obrigatório"),
     location: Yup.string().required("A localidade é obrigatória"),
   });
 
@@ -42,7 +42,7 @@ const SchoolForm = ({ onCancel }) => {
       const result = await dispatch(createSchool(DataPayment));
       if (result.error.message === "Rejected") {
         console.log(result);
-        toast.error(result.payload.response.data.message);
+        toast.error(result.payload.message);
       }
       console.log(result);
       if (result.meta.requestStatus === "fulfilled") {
@@ -130,6 +130,12 @@ const SchoolForm = ({ onCancel }) => {
                   placeholder="Digite sua localidade"
                   className="block input input-bordered input-md w-full "
                 />
+                {SchoolForm.errors.location &&
+                  SchoolForm.touched.location && (
+                    <span className="text-red-600 text-sm">
+                      {SchoolForm.errors.location}
+                    </span>
+                  )}
               </div>
             </div>
           </div>
