@@ -10,8 +10,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ButtonModal from "../modal/buttonModal";
 
-
-
 interface Props {
   PageName: string;
   children: React.ReactNode;
@@ -24,6 +22,7 @@ const user: userType = {
 
 const Main: React.FC<Props> = ({ children, PageName }) => {
   const [activeNavigation, setActiveNavigation] = useState<number | null>(0);
+  
 
   const pathname = usePathname();
 
@@ -33,11 +32,9 @@ const Main: React.FC<Props> = ({ children, PageName }) => {
   ];
 
   const handleNavigationClick = (id: number) => {
-    console.log(id);
     setActiveNavigation(id);
   };
 
-  
   
 
   const userNavigation = [
@@ -45,7 +42,7 @@ const Main: React.FC<Props> = ({ children, PageName }) => {
     { name: "Configurações", href: "#" },
     { name: "Sair", href: "#" },
   ];
-  
+
   function classNames(...classes: any) {
     return classes.filter(Boolean).join(" ");
   }
@@ -234,9 +231,9 @@ const Main: React.FC<Props> = ({ children, PageName }) => {
               {PageName}
             </h1>
             <div className="right-10">
-            <ButtonModal/>
+              {/* Renderizar o formulário na modal */}
+              <ButtonModal/>
             </div>
-            
           </div>
         </header>
         <main>

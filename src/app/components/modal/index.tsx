@@ -1,13 +1,14 @@
-'use client';
-import { Fragment, useRef, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
+import { DocumentPlusIcon } from '@heroicons/react/24/solid'
 import { useRouter } from 'next/navigation'
 
-export default function Modal({state, handleState}: any) {
+interface ModalFormProps {
+  formComponent: React.ReactNode; // Definindo a propriedade formComponent
+}
 
+export default function Modal({ state, handleState, formComponent }: any) {
   const cancelButtonRef = useRef(null);
-
   const router = useRouter()
 
   return (
@@ -36,38 +37,32 @@ export default function Modal({state, handleState}: any) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg ">
-                <div className="bg-white dark:bg-slate-800 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full xl:max-w-3xl">
+                <div className="bg-white  px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
                     <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                      <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                      <DocumentPlusIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                     </div>
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                      <Dialog.Title as="h3" className="dark:text-white text-base font-semibold leading-6 text-gray-900">
-                        Registar Escola
-                      </Dialog.Title>
+                     {/*  <Dialog.Title as="h3" className="dark:text-white text-base font-semibold leading-6 text-gray-900">
+                        Registar Nova
+                      </Dialog.Title> */}
                       <div className="mt-2">
-                        <p className="text-sm text-gray-500 dark:text-white">
-                         Deseja sair da aplicação?
-                        </p>
+                      {formComponent}
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="dark:bg-slate-800 bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                {/* Renderizando o formulário dinâmico */}
+                <div className=" bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                  
                   <button
                     type="button"
-                    className="btn inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                  >
-                    Registrar
-                  </button>
-                  <button
-                    type="button"
-                    className=" dark:text-white dark:bg-gray-800 btn mt-3 inline-flex w-full  justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 sm:mt-0 sm:w-auto"
+                    className="btn mt-3 inline-flex w-full  justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 sm:mt-0 sm:w-auto"
                     onClick={()=>handleState(false)}
                     ref={cancelButtonRef}
                   >
-                  Voltar
+                    Voltar
                   </button>
                 </div>
               </Dialog.Panel>
