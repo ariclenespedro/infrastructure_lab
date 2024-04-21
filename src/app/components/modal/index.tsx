@@ -7,9 +7,15 @@ interface ModalFormProps {
   formComponent: React.ReactNode; // Definindo a propriedade formComponent
 }
 
-export default function Modal({ state, handleState, formComponent }: any) {
+export default function Modal({ state, handleState, formComponent, resetForm  }: any) {
   const cancelButtonRef = useRef(null);
   const router = useRouter()
+
+  // Função para fechar a modal e limpar o formulário
+  const handleCloseModal = () => {
+    resetForm(); // Limpar o formulário
+    handleState(false); // Fechar a modal
+  };
 
   return (
     <Transition.Root show={state} as={Fragment}>
@@ -40,8 +46,8 @@ export default function Modal({ state, handleState, formComponent }: any) {
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full xl:max-w-3xl">
                 <div className="bg-white  px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
-                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                      <DocumentPlusIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                      <DocumentPlusIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
                     </div>
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                      {/*  <Dialog.Title as="h3" className="dark:text-white text-base font-semibold leading-6 text-gray-900">
