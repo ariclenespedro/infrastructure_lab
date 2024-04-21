@@ -8,6 +8,14 @@ interface TableDataStatsProps {
 }
 
 const TableTwo: React.FC<TableDataStatsProps> = ({ schoolData, headers }) => {
+  console.log("Array:",schoolData);
+
+  const Data = schoolData?.map(item => ({
+    designation: item.designation,
+    email: item.email,
+    location: item.location,
+  }));
+
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -21,7 +29,7 @@ const TableTwo: React.FC<TableDataStatsProps> = ({ schoolData, headers }) => {
         </thead>
         <tbody>
           {/* Renderizando dados */}
-          {schoolData.map((school, rowIndex) => (
+          {Data?.map((school, rowIndex) => (
             <tr key={rowIndex}>
               {/* Renderizando número da linha na primeira coluna */}
               <td>{rowIndex + 1}</td>

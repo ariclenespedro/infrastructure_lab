@@ -14,7 +14,7 @@ const initialValues = {
   location: "",
 };
 
-const SchoolForm = ({ onCancel }) => {
+const SchoolForm = ({ onCancel}) => {
   const handleCancelClick = () => {
     onCancel(); // Chama a função onCancel quando o botão "Cancelar" é clicado
   };
@@ -40,14 +40,21 @@ const SchoolForm = ({ onCancel }) => {
         location: values.location,
       };
       const result = await dispatch(createSchool(DataPayment));
-      if (result.error.message === "Rejected") {
+
+      if (result.meta.requestStatus == "fulfilled") {
+
+        onCancel(); // Fecha a modal após o registro bem-sucedido
+        toast.success("Escola registrada com sucesso!");
+        
+      } else if (result.error.message === "Rejected") {
         console.log(result);
         toast.error(result.payload.message);
       }
-      console.log(result);
-      if (result.meta.requestStatus === "fulfilled") {
-        toast.success("teste");
-      }
+
+      console.log(result.meta.requestStatus === "fulfilled");
+      
+    
+      
     },
   });
 
