@@ -6,7 +6,7 @@ async function main() {
   try {
     // Conexão com o MongoDB
     mongoose
-      .connect("mongodb://localhost:27017/system_bank_db")
+      .connect("mongodb://localhost:27017/infrastructure_db")
       .then(() => {
         console.log("Conexão com o MongoDB estabelecida");
       })
