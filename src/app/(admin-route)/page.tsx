@@ -12,6 +12,12 @@ export default function Home() {
     location: 'Camama, Luanda',
     total_infrastructure: 5
     },
+    {
+      designation: 'ISPTEC',
+    email: 'isptec@gmail.com',
+    location: 'Talatona, Luanda',
+    total_infrastructure: 10
+    },
   ];
 
   const headers = ["#", "Designação", "Email", "Localização", "Total de Infraestruturas"];

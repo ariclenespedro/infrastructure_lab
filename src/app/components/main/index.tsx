@@ -28,7 +28,7 @@ const Main: React.FC<Props> = ({ children, PageName }) => {
 
   const navigation: navegationType[] = [
     { name: "Escolas", href: "/", id: 0 },
-    { name: "Infraestruturas", href: "/infraestruturas", id: 1 },
+    /* { name: "Infraestruturas", href: "/infraestruturas", id: 1 }, */
   ];
 
   const handleNavigationClick = (id: number) => {

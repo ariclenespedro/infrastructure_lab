@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { schoolType } from "@/types/schools";
 
 interface TableDataStatsProps {
@@ -25,9 +25,17 @@ const TableTwo: React.FC<TableDataStatsProps> = ({ schoolData, headers }) => {
             <tr key={rowIndex}>
               {/* Renderizando número da linha na primeira coluna */}
               <td>{rowIndex + 1}</td>
-              {/* Mapeando os valores das outras colunas dinamicamente */}
+              {/* Renderizando link para a coluna Designação */}
+              <td>
+                <Link className="link link-info" href={`/infraestruturas`}>
+                  {school.designation}
+                </Link>
+              </td>
+              {/* Renderizando os valores das outras colunas dinamicamente */}
               {Object.values(school).map((value, cellIndex) => (
-                <td key={cellIndex}>{value}</td>
+                // Se você não deseja que a primeira célula (ID) seja um link, você pode verificar o índice da célula
+                // e adicionar o link apenas às células desejadas
+                cellIndex !== 0 ? <td key={cellIndex}>{value}</td> : null
               ))}
             </tr>
           ))}
