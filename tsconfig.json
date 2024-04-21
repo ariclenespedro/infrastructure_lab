@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "backend/src/redux/store.jsx", "backend/src/redux/StoreWrapper.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "backend/src/redux/store.jsx", "backend/src/redux/StoreWrapper.jsx", "src/app/components/form/SchoolForm.jsx"],
   "exclude": ["node_modules"]
 }
