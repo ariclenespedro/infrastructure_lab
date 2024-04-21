@@ -1,3 +1,4 @@
+
 import React, { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -7,8 +8,10 @@ import Image from "next/image";
 import userImg from "../../../../public/images/user.png";
 import logo from "../../../../public/images/logo.png";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, redirect } from "next/navigation";
 import ButtonModal from "../modal/buttonModal";
+
+import { useRouter } from 'next/navigation';
 
 interface Props {
   PageName: string;
@@ -25,6 +28,8 @@ const Main: React.FC<Props> = ({ children, PageName }) => {
   
 
   const pathname = usePathname();
+  const router = useRouter();
+  
 
   const navigation: navegationType[] = [
     { name: "Escolas", href: "/", id: 0 },
@@ -34,6 +39,10 @@ const Main: React.FC<Props> = ({ children, PageName }) => {
   const handleNavigationClick = (id: number) => {
     setActiveNavigation(id);
   };
+
+  function handleRedirect(){
+    router.push('/')
+  }
 
   
 
@@ -230,10 +239,17 @@ const Main: React.FC<Props> = ({ children, PageName }) => {
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               {PageName}
             </h1>
-            <div className="right-10">
+            <div className="right-10 space-x-4">
               {/* Renderizar o formulário na modal */}
               <ButtonModal/>
+
+              {pathname === '/infraestruturas' ? 
+              <button className="btn btn-secondary"
+              onClick={()=>handleRedirect()}>Voltar</button> :
+              null }
+              
             </div>
+
           </div>
         </header>
         <main>
