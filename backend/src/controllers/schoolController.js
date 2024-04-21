@@ -26,12 +26,12 @@ const school = {
       await newSchool.save();
 
       res.status(201).json({
-        message: "Conta bancária aberta com sucesso",
+        message: "Escola registrada com sucesso",
         account: newAccount,
       });
     } catch (error) {
-      console.error("Erro ao abrir conta bancária:", error);
-      res.status(500).json({ message: "Erro ao abrir conta bancária" });
+      console.error("Erro ao registrar a escola:", error);
+      res.status(500).json({ message: "Erro ao registrar a escola" });
     }
   },
   /* getDataAccount: async (req, res, next) => {
