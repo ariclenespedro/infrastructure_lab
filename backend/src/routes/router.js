@@ -1,11 +1,8 @@
 const router = require('express').Router();
 
-//Client routes
-const clientRouter = require('./');
-const accountRouter = require('./accounts');
+const schoolRouter = require('./schools');
+const userRouter = require('./users');
 
-/* router.use("/",clientRouter);
-router.use("/",accountRouter);
-router.use("/",transitionRouter); */
+router.use("/",schoolRouter);
 
 module.exports = router;

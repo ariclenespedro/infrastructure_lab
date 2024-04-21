@@ -2,8 +2,7 @@ const router = require("express").Router();
 
 const schoolController = require("../controllers/schoolController");
 
-
-router.route("/auth/school").post(auth, (req, res) => schoolController.create(req, res));
+router.route("/auth/school").post( (req, res) => schoolController.create(req, res));
 
 /* //login do client router
 router.route("/auth/login").post((req, res) => authController.login(req, res));
