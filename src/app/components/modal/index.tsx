@@ -54,7 +54,7 @@ export default function Modal({ state, handleState, formComponent }: any) {
                   </div>
                 </div>
                 {/* Renderizando o formulário dinâmico */}
-                <div className=" bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                {/* <div className=" bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   
                   <button
                     type="button"
@@ -64,7 +64,7 @@ export default function Modal({ state, handleState, formComponent }: any) {
                   >
                     Voltar
                   </button>
-                </div>
+                </div> */}
               </Dialog.Panel>
             </Transition.Child>
           </div>

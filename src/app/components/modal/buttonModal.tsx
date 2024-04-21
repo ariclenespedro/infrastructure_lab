@@ -16,12 +16,12 @@ import { usePathname } from "next/navigation";
 
   function handleNavigationButton() {
     if (pathname === "/") {
-      setModalForm(<SchoolForm />);
+      setModalForm(<SchoolForm onCancel={() => setOpenModal(false)} />);
       console.log('click navigation');
       
     }
     if (pathname === "/infraestruturas") {
-      setModalForm(<InfrastructureForm />);
+      setModalForm(<InfrastructureForm onCancel={() => setOpenModal(false)} />);
       
       
     }
