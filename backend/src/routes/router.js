@@ -1,9 +1,8 @@
 const router = require('express').Router();
 
 //Client routes
-/* const clientRouter = require('./clients');
+const clientRouter = require('./');
 const accountRouter = require('./accounts');
-const transitionRouter = require('./transitions'); */
 
 /* router.use("/",clientRouter);
 router.use("/",accountRouter);

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const schoolShema = mongoose.Schema({
-    designation: String,
-    email: String,
+    designation: {type:String, required:true},
+    email: {type:String, required:true},
     location: String,
     total_infrastructure: Number,
 },{timestamps: true});
