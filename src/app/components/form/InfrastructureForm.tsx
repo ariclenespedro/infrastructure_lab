@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-interface SchoolFormProps {
+interface InfrastructureFormProps {
   onCancel: () => void;
 }
 
-const InfrastructureForm: React.FC<SchoolFormProps> = ({ onCancel }) => {
+const InfrastructureForm: React.FC<InfrastructureFormProps> = ({ onCancel }) => {
     const handleCancelClick = () => {
         onCancel(); // Chama a função onCancel quando o botão "Cancelar" é clicado
       }
@@ -50,6 +50,8 @@ const InfrastructureForm: React.FC<SchoolFormProps> = ({ onCancel }) => {
                     id="funcional" 
                     placeholder="Digite o número de salas ou laboratórios funcionais" 
                     className="block input input-bordered input-md w-full " 
+                    min={`0`}
+                    step={`1`}
                 />
               </div>
             </div>
@@ -64,7 +66,9 @@ const InfrastructureForm: React.FC<SchoolFormProps> = ({ onCancel }) => {
                     name="funcional"  
                     id="funcional" 
                     placeholder="Digite o número de salas ou laboratórios não funcionais" 
-                    className="block input input-bordered input-md w-full " 
+                    className="block input input-bordered input-md w-full "
+                    min={`0`}
+                    step={`1`} 
                 />
               </div>
             </div>
