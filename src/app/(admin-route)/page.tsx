@@ -44,7 +44,7 @@ const Home: React.FC = ({
       return () => clearInterval(intervalId);
     }, [getSchoolsData]);
 
-    console.log(DataSchool)
+    /* console.log(DataSchool) */
 
 
   const headers = ["#", "Designação", "Email", "Localização"];

@@ -17,7 +17,7 @@ export const createInfrastructure = createAsyncThunk(
         };
         console.log(school_id);
         const res = await axios.post(`/api/schools/${school_id}/infrastructures/create`, values, config);
-        console.log(res);
+        /* console.log(res); */
         return  res.data;
       } catch (error) {
         console.log('response InfrastructureActions errors:',error);
@@ -39,11 +39,34 @@ export const createInfrastructure = createAsyncThunk(
           },
         };
         const res = await axios.get(`/api/schools/${school_id}/infrastructures`, config);
-        console.log(res);
+        /* console.log(res); */
         return  res.data;
         
       } catch (error) {
         console.log('response infrastructureActions errors:',error);
+        throw new Error(error.message);
+      }
+    },
+  )
+
+  export const updateInfrastructure = createAsyncThunk(
+    'infrastruture/update',
+    async (data) => {
+      console.log('teste',data);
+      try {
+
+        const config = {
+          baseURL: 'http://localhost:5100',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        };
+        const res = await axios.post(`http://localhost:5100/api/infrastructure/update`, data,config);
+        console.log(res);
+        return  res.data;
+        
+      } catch (error) {
+        console.log('response update errors:',error);
         throw new Error(error.message);
       }
     },

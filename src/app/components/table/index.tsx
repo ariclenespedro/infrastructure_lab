@@ -47,12 +47,8 @@ const TableTwo: React.FC<TableDataStatsProps> = ({ schoolData, headers }) => {
                   {school.designation}
                 </Link>
               </td>
-              {/* Renderizando os valores das outras colunas dinamicamente */}
-              {Object.values(school).map((value, cellIndex) => (
-                // Se você não deseja que a primeira célula (ID) seja um link, você pode verificar o índice da célula
-                // e adicionar o link apenas às células desejadas
-                (cellIndex !== 0) ? <td key={cellIndex}>{value}</td> : null
-              ))}
+              <td> {school.email}</td>
+              <td> {school.location}</td>
             </tr>
           ))}
         </tbody>

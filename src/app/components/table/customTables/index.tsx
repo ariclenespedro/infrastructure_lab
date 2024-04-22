@@ -1,6 +1,12 @@
 import { infrastructureType } from "@/types/infrastructure";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+
+import { updateInfrastructure, getInfrastructureData  } from "@/redux/school/infrastructure/infrastructureAction";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "next/navigation";
+
+
 
 interface TableDataStatsProps {
   data: Array<infrastructureType>;
@@ -11,6 +17,35 @@ const TableInfrastructure: React.FC<TableDataStatsProps> = ({
   data,
   headers,
 }) => {
+
+  const router = useSearchParams();
+  const parameters = router.get('school_id');
+
+  const dispatch = useDispatch();
+    // Estado para armazenar os dados da tabela
+    const [Data, setData] = React.useState<Array<infrastructureType>>([]);
+   
+
+
+    React.useEffect(()=>{
+      setData(data);
+    },[data]);
+    //console.log( {Data,data});
+  const handleChange = (e, row, field) => {
+
+   // let newData: Array<infrastructureType> = [...Data];
+    const rowIndex = Data.findIndex(item => item._id === row);
+    if (rowIndex !== -1) {
+      // Cria uma nova cópia do objeto a ser atualizado
+      const updatedItem = field ==='funcional'? { ...data[rowIndex], funcional: e.target.value } : field ==='nao_funcional'? { ...data[rowIndex], nao_funcional: e.target.value } : { ...data[rowIndex], total: e.target.value };
+      // Cria uma nova cópia do array e substitui o objeto atualizado
+      const newData = [...data.slice(0, rowIndex), updatedItem, ...data.slice(rowIndex + 1)];
+
+      console.log(newData);
+      setData(newData);
+    }
+
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -25,7 +60,7 @@ const TableInfrastructure: React.FC<TableDataStatsProps> = ({
         </thead>
         <tbody>
           {/* Renderizando dados */}
-          {data?.map((infrastructure, rowIndex) => (
+          {Data?.map((infrastructure, rowIndex) => (
             <tr key={rowIndex}>
               {/* Renderizando número da linha na primeira coluna */}
               <td>{rowIndex + 1}</td>
@@ -38,7 +73,9 @@ const TableInfrastructure: React.FC<TableDataStatsProps> = ({
                     type="number"
                     name="funcional"
                     id="funcional"
-                    value={infrastructure.funcional}
+                    /* value={infrastructure.funcional} */
+                    onChange={(e) => handleChange(e, infrastructure._id, 'funcional')}
+                    defaultValue={infrastructure.funcional}
                   />
                 }
               </td>
@@ -49,7 +86,8 @@ const TableInfrastructure: React.FC<TableDataStatsProps> = ({
                     type="number"
                     name="nao_funcional"
                     id="nao_funcional"
-                    value={infrastructure.nao_funcional}
+                    onChange={(e) => handleChange(e, infrastructure._id, 'nao_funcional')}
+                    defaultValue={infrastructure.nao_funcional}
                   />
                 }
               </td>
@@ -64,30 +102,21 @@ const TableInfrastructure: React.FC<TableDataStatsProps> = ({
                   />
                 }
               </td>
-              {/* Renderizando os valores das outras colunas dinamicamente */}
-              {/*               {Object.values(infrastructure).map((value, cellIndex) =>
-                // Se você não deseja que a primeira célula (ID) seja um link, você pode verificar o índice da célula
-                // e adicionar o link apenas às células desejadas
-                cellIndex !== 0 ? (
-                  <td key={cellIndex}>
-                    <input
-                      className="input input-sm input-bordered input-primary"
-                      type="number"
-                      name=""
-                      id=""
-                      value={value}
-                    />
-                  </td>
-                ) : null
-              )} */}
             </tr>
           ))}
         </tbody>
       </table>
       {/* Botão de atualizar */}
       <div className="flex justify-end mt-4">
-        <button onClick={} className="btn btn-primary">Atualizar</button>
-      </div>
+      <button onClick={async () => {Data.map((item,__)=>{
+         const res = dispatch(updateInfrastructure({
+          id: item._id, funcional: item.funcional, nao_funcional: item.nao_funcional, total: item.total
+         })
+         )
+         dispatch(getInfrastructureData(parameters));
+      
+      })}} className="btn btn-primary">Atualizar</button>
+    </div>
     </div>
   );
 };

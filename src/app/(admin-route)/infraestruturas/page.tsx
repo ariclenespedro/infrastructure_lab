@@ -51,7 +51,7 @@ const Infraestruture: React.FC = ({
       return () => clearInterval(intervalId);
     }, [getInfrastructureData]);
 
-    console.log(DataInfrastructure)
+    /* console.log(DataInfrastructure) */
 
 
     const headers = ["#", "Designação", "Funcional", "Não Funcional", "Número Total"];

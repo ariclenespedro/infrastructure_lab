@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createInfrastructure, getInfrastructureData  } from './infrastructureAction';
+import { createInfrastructure, getInfrastructureData, updateInfrastructure  } from './infrastructureAction';
 
 
 const initialState = {
@@ -33,10 +33,18 @@ const infrastructureSlice = createSlice({
         }
       })
 
+      .addCase(updateInfrastructure.pending, (state) => {
+        console.log('Pending case... get Infrastructure');
+        return{
+          ...state,
+          loading: true,
+        }
+      })
+
       //fulfilled
       
       .addCase(createInfrastructure.fulfilled, (state, {payload}) =>{
-        console.log('payload create Infrastructure:',payload);
+        /* console.log('payload create Infrastructure:',payload); */
         return{
           ...state,
           loading:false,
@@ -44,8 +52,17 @@ const infrastructureSlice = createSlice({
         }
       })
 
+      .addCase(updateInfrastructure.fulfilled, (state, {payload}) =>{
+        console.log('payload update Infrastructure:',payload);
+        return{
+          ...state,
+          loading:false,
+          infrastructure_data: payload,
+        }
+      })
+
       .addCase(getInfrastructureData.fulfilled, (state, {payload}) =>{
-        console.log('payload get Infrastructure:',payload);
+        /* console.log('payload get Infrastructure:',payload); */
         return{
           ...state,
           loading:false,
@@ -64,7 +81,16 @@ const infrastructureSlice = createSlice({
       })
 
       .addCase(getInfrastructureData.rejected, ( state, {payload} ) => {
-        console.log('Rejected get Infrastructure:', payload);
+        /* console.log('Rejected get Infrastructure:', payload); */
+        return{
+          ...state,
+          loading:false,
+          error: payload,
+        }
+      })
+
+      .addCase(updateInfrastructure.rejected, ( state, {payload} ) => {
+        console.log('Rejected update Infrastructure:', payload);
         return{
           ...state,
           loading:false,
