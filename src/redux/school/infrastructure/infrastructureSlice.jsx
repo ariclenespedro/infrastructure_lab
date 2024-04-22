@@ -4,7 +4,8 @@ import { createInfrastructure, getInfrastructureData  } from './infrastructureAc
 
 const initialState = {
     loading: true,
-    Infrastructure_data: null,
+    infrastructure_data: null,
+    infrastructureCreated: null,
     error: null,
   };
 
@@ -39,7 +40,7 @@ const infrastructureSlice = createSlice({
         return{
           ...state,
           loading:false,
-          Infrastructure_data: payload,
+          infrastructureCreated: payload,
         }
       })
 
@@ -48,7 +49,7 @@ const infrastructureSlice = createSlice({
         return{
           ...state,
           loading:false,
-          Infrastructure_data: payload,
+          infrastructure_data: payload,
         }
       })
 

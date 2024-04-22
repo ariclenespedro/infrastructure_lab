@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 
 import { createSchool } from "@/redux/school/schoolActions";
+import { createInfrastructure } from "@/redux/school/infrastructure/infrastructureAction";
 
 const initialValues = {
   designation: "",
@@ -37,6 +38,7 @@ const InfrastructureForm = ({ onCancel, school_id }) => {
     validationSchema: InfrastructureShema,
     onSubmit: async (values) => {
       console.log(values);
+      console.log('id',school_id);
       const Data = {
         designation: values.designation,
         email: values.funcional,
@@ -45,7 +47,7 @@ const InfrastructureForm = ({ onCancel, school_id }) => {
         school_id: school_id,
       };
       /* toast.success("parabens") */
-      const result = await dispatch(createSchool(Data));
+      const result = await dispatch(createInfrastructure(Data));
 
       if (result.meta.requestStatus == "fulfilled") {
         onCancel(); // Fecha a modal após o registro bem-sucedido

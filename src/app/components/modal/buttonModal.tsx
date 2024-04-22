@@ -21,9 +21,9 @@ import { usePathname } from "next/navigation";
       
     }
     if (pathname === "/infraestruturas") {
+      console.log('btn',school_id);
+      
       setModalForm(<InfrastructureForm school_id={school_id} onCancel={() => setOpenModal(false)} />);
-      
-      
     }
   }
 

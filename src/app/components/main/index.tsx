@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation';
 interface Props {
   PageName: string;
   children: React.ReactNode;
-  school_id: any;
+  school_id: string;
 }
 
 const user: userType = {
@@ -242,7 +242,7 @@ const Main: React.FC<Props> = ({ children, PageName, school_id }) => {
             </h1>
             <div className="right-10 space-x-4">
               {/* Renderizar o formulário na modal */}
-              <ButtonModal/>
+              <ButtonModal school_id={school_id} />
 
               {pathname === '/infraestruturas' ? 
               <button className="btn btn-secondary"

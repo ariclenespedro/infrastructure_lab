@@ -1,4 +1,5 @@
 const Infrastructure = require("../models/Infrastructure");
+const School = require("../models/School");
 
 const infrastructure = {
   create: async (req, res) => {
@@ -10,7 +11,13 @@ const infrastructure = {
         total,
       } = req.body;
 
-      const scchool_id = req.params.school_id;
+      const school_id = req.params.school_id;
+
+      const school = await School.findById(school_id);
+
+      if (!school) {
+        return res.status(404).json({ message: "Escola não encontrada" });
+      }
 
       if (!designation) {
         return res.status(422).json({ message: "O nome da designação infraestrutura é obrigatorio!" });
@@ -28,7 +35,7 @@ const infrastructure = {
         designation,
         nao_funcional,
         funcional,
-        scchool_id,
+        school: school ,
         total
       });
 

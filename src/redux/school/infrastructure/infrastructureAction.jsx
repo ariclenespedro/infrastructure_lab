@@ -15,6 +15,7 @@ export const createInfrastructure = createAsyncThunk(
             'Content-Type': 'application/json',
           },
         };
+        console.log(school_id);
         const res = await axios.post(`/api/schools/${school_id}/infrastructures/create`, values, config);
         console.log(res);
         return  res.data;
