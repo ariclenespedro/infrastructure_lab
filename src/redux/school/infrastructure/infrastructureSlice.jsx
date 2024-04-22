@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createInfrastructure  } from './infrastructureAction';
+import { createInfrastructure, getInfrastructureData  } from './infrastructureAction';
 
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
   };
 
 const infrastructureSlice = createSlice({
-    name: "school",
+    name: "infrastructure",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -18,6 +18,14 @@ const infrastructureSlice = createSlice({
       
       .addCase(createInfrastructure.pending, (state) => {
         console.log('Pending case... create Infrastructure');
+        return{
+          ...state,
+          loading: true,
+        }
+      })
+
+      .addCase(getInfrastructureData.pending, (state) => {
+        console.log('Pending case... get Infrastructure');
         return{
           ...state,
           loading: true,
@@ -35,9 +43,27 @@ const infrastructureSlice = createSlice({
         }
       })
 
+      .addCase(getInfrastructureData.fulfilled, (state, {payload}) =>{
+        console.log('payload get Infrastructure:',payload);
+        return{
+          ...state,
+          loading:false,
+          Infrastructure_data: payload,
+        }
+      })
+
       //reject
       .addCase(createInfrastructure.rejected, ( state, {payload} ) => {
         console.log('Rejected create Infrastructure:', payload);
+        return{
+          ...state,
+          loading:false,
+          error: payload,
+        }
+      })
+
+      .addCase(getInfrastructureData.rejected, ( state, {payload} ) => {
+        console.log('Rejected get Infrastructure:', payload);
         return{
           ...state,
           loading:false,

@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 
 import PropTypes from 'prop-types';
 import { connect, useDispatch, useSelector } from "react-redux";
-import { getSchoolsData  } from "@/redux/school/schoolActions";
+import {   } from "@/redux/school/infrastructure/infrastructureAction";
 import { useEffect, useState } from "react";
 
 export default function Infraestruture() {

@@ -26,18 +26,18 @@ export const createInfrastructure = createAsyncThunk(
     }
   );
 
-  /* export const getSchoolsData = createAsyncThunk(
+  export const getInfrastructureData = createAsyncThunk(
     'schools/get',
-    async () => {
+    async (school_id) => {
       try {
 
         const config = {
-          baseURL: 'http://192.168.1.76:5100',
+          baseURL: 'http://localhost:5100',
           headers: {
             'Content-Type': 'application/json',
           },
         };
-        const res = await axios.get(`/api/schools`, config);
+        const res = await axios.get(`/api/schools/${school_id}/infrastructures`, config);
         console.log(res);
         return  res.data;
         
@@ -46,4 +46,4 @@ export const createInfrastructure = createAsyncThunk(
         throw new Error(error.message);
       }
     },
-  ) */
+  )
