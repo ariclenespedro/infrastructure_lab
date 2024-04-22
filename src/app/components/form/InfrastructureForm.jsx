@@ -1,68 +1,62 @@
-"use client";
 import React from "react";
 
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-
-import { createSchool } from "@/redux/school/schoolActions";
 
 const initialValues = {
   designation: "",
-  email: "",
-  location: "",
+  funcional: 0,
+  nao_funcional: 0,
+  /* total: 0, */
 };
 
-const SchoolForm = ({ onCancel}) => {
+const InfrastructureForm = ({ onCancel }) => {
   const handleCancelClick = () => {
     onCancel(); // Chama a função onCancel quando o botão "Cancelar" é clicado
   };
 
-  const dispatch = useDispatch();
-
-  const SchooltShema = Yup.object().shape({
+  const InfrastructureShema = Yup.object().shape({
     designation: Yup.string().required(
       "A designação da escola é um campo obrigatório"
     ),
-    email: Yup.string().required("O email é obrigatório"),
-    location: Yup.string().required("A localidade é obrigatória"),
+    funcional: Yup.number()
+      .min(0, "O valor não pode ser negativo")
+      .required("Campo obrigatório"),
+    nao_funcionais: Yup.number()
+      .min(0, "O valor não pode ser negativo")
+      .required("Campo obrigatório"),
   });
 
-  const SchoolForm = useFormik({
+  const InfrastructureForm = useFormik({
     initialValues: initialValues,
-    validationSchema: SchooltShema,
+    validationSchema: InfrastructureShema,
     onSubmit: async (values) => {
+      console.log('teste');
       console.log(values);
-      const DataSchool = {
+      /* const Data = {
         designation: values.designation,
-        email: values.email,
-        location: values.location,
-      };
-      const result = await dispatch(createSchool(DataSchool));
+        email: values.funcional,
+        location: values.nao_funcional,
+        total: parseInt(values.nao_funcional + values.funcional),
+      }; */
+      toast.success("parabens")
+      /* const result = await dispatch(createSchool(Data));
 
       if (result.meta.requestStatus == "fulfilled") {
-
         onCancel(); // Fecha a modal após o registro bem-sucedido
         toast.success("Escola registrada com sucesso!");
-        
       } else if (result.error.message === "Rejected") {
         console.log(result);
         toast.error(result.payload.message);
-      }
-
-      console.log(result.meta.requestStatus === "fulfilled");
-      
-    
-      
+      } */
     },
   });
-
   return (
-    <form onSubmit={SchoolForm.handleSubmit}>
+    <form onSubmit={InfrastructureForm.handleSubmit}>
       <div className="space-y-12">
         <h2 className="text-base font-semibold leading-7 text-gray-900">
-          Registrar Escola
+          Registrar Infraestrutura
         </h2>
 
         <div className="border-b border-gray-900/10 pb-12">
@@ -80,15 +74,15 @@ const SchoolForm = ({ onCancel}) => {
                   type="text"
                   id="designation"
                   name="designation"
-                  onChange={SchoolForm.handleChange}
-                  value={SchoolForm.values.designation}
+                  onChange={InfrastructureForm.handleChange}
+                  value={InfrastructureForm.values.designation}
                   placeholder="Digite a designação"
                   className="block input input-bordered input-md w-full "
                 />
-                {SchoolForm.errors.designation &&
-                  SchoolForm.touched.designation && (
+                {InfrastructureForm.errors.designation &&
+                  InfrastructureForm.touched.designation && (
                     <span className="text-red-600 text-sm">
-                      {SchoolForm.errors.designation}
+                      {InfrastructureForm.errors.designation}
                     </span>
                   )}
               </div>
@@ -96,27 +90,28 @@ const SchoolForm = ({ onCancel}) => {
 
             <div className="sm:col-span-6">
               <label
-                htmlFor="email"
+                htmlFor="funcional"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email
+                Funcional
                 <span className="text-red-600 text-sm px-2">*</span>
               </label>
               <div className="mt-2">
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={SchoolForm.values.email}
-                  onChange={SchoolForm.handleChange}
-                  autoComplete="email"
-                  placeholder="Digite um email válido"
+                  type="number"
+                  name="funcional"
+                  id="funcional"
+                  value={InfrastructureForm.values.funcional}
+                  onChange={InfrastructureForm.handleChange}
+                  placeholder="Digite o número de salas ou laboratórios funcionais"
                   className="block input input-bordered input-md w-full "
+                  min={`0`}
+                  step={`1`}
                 />
-                {SchoolForm.errors.email &&
-                  SchoolForm.touched.email && (
+                {InfrastructureForm.errors.funcional &&
+                  InfrastructureForm.touched.funcional && (
                     <span className="text-red-600 text-sm">
-                      {SchoolForm.errors.email}
+                      {InfrastructureForm.errors.funcional}
                     </span>
                   )}
               </div>
@@ -124,26 +119,28 @@ const SchoolForm = ({ onCancel}) => {
 
             <div className="sm:col-span-6">
               <label
-                htmlFor="country"
+                htmlFor="nao_funcional"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Localidade
+                Não Funcional
                 <span className="text-red-600 text-sm px-2">*</span>
               </label>
               <div className="mt-2">
                 <input
-                  type="text"
-                  id="location"
-                  name="location"
-                  onChange={SchoolForm.handleChange}
-                  value={SchoolForm.values.location}
-                  placeholder="Digite sua localidade"
+                  type="number"
+                  name="nao_funcional"
+                  id="nao_funcional"
+                  value={InfrastructureForm.values.nao_funcional}
+                  onChange={InfrastructureForm.handleChange}
+                  placeholder="Digite o número de salas ou laboratórios não funcionais"
                   className="block input input-bordered input-md w-full "
+                  min={`0`}
+                  step={`1`}
                 />
-                {SchoolForm.errors.location &&
-                  SchoolForm.touched.location && (
+                {InfrastructureForm.errors.nao_funcional &&
+                  InfrastructureForm.touched.nao_funcional && (
                     <span className="text-red-600 text-sm">
-                      {SchoolForm.errors.location}
+                      {InfrastructureForm.errors.nao_funcional}
                     </span>
                   )}
               </div>
@@ -151,7 +148,6 @@ const SchoolForm = ({ onCancel}) => {
           </div>
         </div>
       </div>
-
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <button
           type="button"
@@ -171,4 +167,4 @@ const SchoolForm = ({ onCancel}) => {
   );
 };
 
-export default SchoolForm;
+export default InfrastructureForm;
