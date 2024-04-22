@@ -10,7 +10,7 @@ const infrastructure = {
         total,
       } = req.body;
 
-      const scchool_id = body.params.school_id;
+      const scchool_id = req.params.school_id;
 
       if (!designation) {
         return res.status(422).json({ message: "O nome da designação infraestrutura é obrigatorio!" });
@@ -44,18 +44,26 @@ const infrastructure = {
       res.status(500).json({ message: "Erro ao registrar a infraestrutura" });
     }
   },
-  listAllSchools: async (req, res, next) => {
+  listInfrastructuresOfSchool: async (req, res, next) => {
     try {
-      // Consulta todos os pagamentos no banco de dados
-      const schools = await School.find();
+        const schoolId = req.params.school_id;
+        
+        // Verifique se a escola existe
+        const school = await School.findById(schoolId);
+        if (!school) {
+            return res.status(404).json({ message: 'Escola não encontrada.' });
+        }
 
-      // Retorna a lista de pagamentos
-      res.status(200).json({ message: 'Lista das escolas obtida com sucesso.', data: schools });
-  } catch (error) {
-      // Se houver algum erro durante a consulta ao banco de dados
-      res.status(500).json({ message: 'Erro ao obter a lista das escolas.', error });
-  }
-  },
+        // Consulte todas as infraestruturas associadas a essa escola
+        const infrastructures = await Infrastructure.find({ school: schoolId });
+
+        // Retorna a lista de infraestruturas
+        res.status(200).json({ message: 'Lista de infraestruturas da escola obtida com sucesso.', data: infrastructures });
+    } catch (error) {
+        // Se houver algum erro durante a consulta ao banco de dados
+        res.status(500).json({ message: 'Erro ao obter a lista de infraestruturas da escola.', error });
+    }
+}
 };
 
 module.exports = infrastructure;
