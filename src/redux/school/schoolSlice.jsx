@@ -8,7 +8,7 @@ const initialState = {
     error: null,
   };
 
-const accountSlice = createSlice({
+const schoolSlice = createSlice({
     name: "school",
   initialState,
   reducers: {},
@@ -80,4 +80,4 @@ const accountSlice = createSlice({
   },
 });
 
-export default accountSlice.reducer;
+export default schoolSlice.reducer;
