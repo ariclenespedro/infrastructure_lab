@@ -16,6 +16,7 @@ import { useRouter } from 'next/navigation';
 interface Props {
   PageName: string;
   children: React.ReactNode;
+  school_id: any;
 }
 
 const user: userType = {
@@ -23,7 +24,7 @@ const user: userType = {
   email: "pedroariclenes@gmail.com",
 };
 
-const Main: React.FC<Props> = ({ children, PageName }) => {
+const Main: React.FC<Props> = ({ children, PageName, school_id }) => {
   const [activeNavigation, setActiveNavigation] = useState<number | null>(0);
   
 

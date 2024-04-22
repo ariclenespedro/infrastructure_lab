@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 
 
 
+
+
 const Home: React.FC = ({ 
   getSchoolsData, 
   school: { school_data, error, loading }}: any) => {
@@ -49,7 +51,7 @@ const Home: React.FC = ({
 
   return (
     <>
-    <Main PageName="Escolas">
+    <Main PageName="Escolas" school_id={null} >
       <Table schoolData={DataSchool.schools.data} headers={headers} />
     </Main>
     </>

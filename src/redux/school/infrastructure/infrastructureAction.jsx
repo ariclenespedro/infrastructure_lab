@@ -10,7 +10,7 @@ export const createInfrastructure = createAsyncThunk(
         const school_id = values?.school_id;
       try {
         const config = {
-          baseURL: 'http://192.168.1.76:5100',
+          baseURL: 'http://localhost:5100',
           headers: {
             'Content-Type': 'application/json',
           },

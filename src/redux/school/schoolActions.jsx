@@ -8,7 +8,7 @@ export const createSchool = createAsyncThunk(
     async (values, thunkAPI) => {
       try {
         const config = {
-          baseURL: 'http://192.168.1.76:5100',
+          baseURL: 'http://localhost:5100',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -30,7 +30,7 @@ export const createSchool = createAsyncThunk(
       try {
 
         const config = {
-          baseURL: 'http://192.168.1.76:5100',
+          baseURL: 'http://localhost:5100',
           headers: {
             'Content-Type': 'application/json',
           },

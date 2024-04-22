@@ -1,20 +1,25 @@
+"use client";
 import React from "react";
 
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+
+import { createSchool } from "@/redux/school/schoolActions";
 
 const initialValues = {
   designation: "",
   funcional: 0,
   nao_funcional: 0,
-  /* total: 0, */
 };
 
-const InfrastructureForm = ({ onCancel }) => {
+const InfrastructureForm = ({ onCancel, school_id }) => {
   const handleCancelClick = () => {
     onCancel(); // Chama a função onCancel quando o botão "Cancelar" é clicado
   };
+
+  const dispatch = useDispatch();
 
   const InfrastructureShema = Yup.object().shape({
     designation: Yup.string().required(
@@ -23,25 +28,24 @@ const InfrastructureForm = ({ onCancel }) => {
     funcional: Yup.number()
       .min(0, "O valor não pode ser negativo")
       .required("Campo obrigatório"),
-    nao_funcionais: Yup.number()
+      nao_funcional: Yup.number()
       .min(0, "O valor não pode ser negativo")
       .required("Campo obrigatório"),
   });
-
   const InfrastructureForm = useFormik({
     initialValues: initialValues,
     validationSchema: InfrastructureShema,
     onSubmit: async (values) => {
-      console.log('teste');
       console.log(values);
-      /* const Data = {
+      const Data = {
         designation: values.designation,
         email: values.funcional,
         location: values.nao_funcional,
         total: parseInt(values.nao_funcional + values.funcional),
-      }; */
-      toast.success("parabens")
-      /* const result = await dispatch(createSchool(Data));
+        school_id: school_id,
+      };
+      /* toast.success("parabens") */
+      const result = await dispatch(createSchool(Data));
 
       if (result.meta.requestStatus == "fulfilled") {
         onCancel(); // Fecha a modal após o registro bem-sucedido
@@ -49,9 +53,11 @@ const InfrastructureForm = ({ onCancel }) => {
       } else if (result.error.message === "Rejected") {
         console.log(result);
         toast.error(result.payload.message);
-      } */
+      }
     },
+
   });
+
   return (
     <form onSubmit={InfrastructureForm.handleSubmit}>
       <div className="space-y-12">

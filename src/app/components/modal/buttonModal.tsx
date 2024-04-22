@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 
 
 
- const ButtonModal: React.FC = () => {
+ const ButtonModal: React.FC = ({school_id}:any) => {
 
   const [modalForm, setModalForm] = useState<React.ReactNode | null>(null);
 
@@ -21,7 +21,7 @@ import { usePathname } from "next/navigation";
       
     }
     if (pathname === "/infraestruturas") {
-      setModalForm(<InfrastructureForm onCancel={() => setOpenModal(false)} />);
+      setModalForm(<InfrastructureForm school_id={school_id} onCancel={() => setOpenModal(false)} />);
       
       
     }

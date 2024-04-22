@@ -14,6 +14,7 @@ const TableTwo: React.FC<TableDataStatsProps> = ({ schoolData, headers }) => {
     designation: item.designation,
     email: item.email,
     location: item.location,
+    id: item._id,
   }));
 
   return (
@@ -35,7 +36,14 @@ const TableTwo: React.FC<TableDataStatsProps> = ({ schoolData, headers }) => {
               <td>{rowIndex + 1}</td>
               {/* Renderizando link para a coluna Designação */}
               <td>
-                <Link className="link link-info" href={`/infraestruturas`}>
+                <Link className="link link-info" href={
+                  {
+                    pathname:"/infraestruturas",
+                    query: {school_id: school.id}
+                  }
+                  
+                }
+                  >
                   {school.designation}
                 </Link>
               </td>
@@ -43,7 +51,7 @@ const TableTwo: React.FC<TableDataStatsProps> = ({ schoolData, headers }) => {
               {Object.values(school).map((value, cellIndex) => (
                 // Se você não deseja que a primeira célula (ID) seja um link, você pode verificar o índice da célula
                 // e adicionar o link apenas às células desejadas
-                cellIndex !== 0 ? <td key={cellIndex}>{value}</td> : null
+                (cellIndex !== 0) ? <td key={cellIndex}>{value}</td> : null
               ))}
             </tr>
           ))}

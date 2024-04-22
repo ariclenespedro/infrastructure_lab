@@ -3,5 +3,6 @@ export type schoolType = {
     email: string;
     location: string;
     total_infrastructure: number;
+    _id: string;
   };
   
