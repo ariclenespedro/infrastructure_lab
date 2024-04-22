@@ -4,7 +4,7 @@ const InfrastructureController = require("../controllers/infrastructureControlle
 
 router.route("/schools/:school_id/infrastructures/create").post( (req, res) => InfrastructureController.create(req, res));
 
-router.route("/schools/:school_id/infrastructures").get((req, res) => schoolController.listAllSchools(req, res));
+router.route("/schools/:school_id/infrastructures").get((req, res) => InfrastructureController.listInfrastructuresOfSchool(req, res));
 
 
 module.exports = router;
