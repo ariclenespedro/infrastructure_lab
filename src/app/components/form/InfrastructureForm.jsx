@@ -41,8 +41,8 @@ const InfrastructureForm = ({ onCancel, school_id }) => {
       console.log('id',school_id);
       const Data = {
         designation: values.designation,
-        email: values.funcional,
-        location: values.nao_funcional,
+        funcional: values.funcional,
+        nao_funcional: values.nao_funcional,
         total: parseInt(values.nao_funcional + values.funcional),
         school_id: school_id,
       };
