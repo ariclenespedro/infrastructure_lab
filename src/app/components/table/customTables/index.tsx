@@ -11,6 +11,7 @@ const TableInfrastructure: React.FC<TableDataStatsProps> = ({
   data,
   headers,
 }) => {
+
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -30,8 +31,41 @@ const TableInfrastructure: React.FC<TableDataStatsProps> = ({
               <td>{rowIndex + 1}</td>
               {/* Renderizando link para a coluna Designação */}
               <td>{infrastructure.designation}</td>
+              <td>
+                {
+                  <input
+                    className="input input-sm input-bordered input-primary"
+                    type="number"
+                    name="funcional"
+                    id="funcional"
+                    value={infrastructure.funcional}
+                  />
+                }
+              </td>
+              <td>
+                {
+                  <input
+                    className="input input-sm input-bordered input-primary"
+                    type="number"
+                    name="nao_funcional"
+                    id="nao_funcional"
+                    value={infrastructure.nao_funcional}
+                  />
+                }
+              </td>
+              <td>
+                {
+                  <input
+                    className="input input-sm input-bordered input-primary"
+                    type="number"
+                    name=""
+                    id=""
+                    value={infrastructure.total}
+                  />
+                }
+              </td>
               {/* Renderizando os valores das outras colunas dinamicamente */}
-              {Object.values(infrastructure).map((value, cellIndex) =>
+              {/*               {Object.values(infrastructure).map((value, cellIndex) =>
                 // Se você não deseja que a primeira célula (ID) seja um link, você pode verificar o índice da célula
                 // e adicionar o link apenas às células desejadas
                 cellIndex !== 0 ? (
@@ -45,14 +79,14 @@ const TableInfrastructure: React.FC<TableDataStatsProps> = ({
                     />
                   </td>
                 ) : null
-              )}
+              )} */}
             </tr>
           ))}
         </tbody>
       </table>
       {/* Botão de atualizar */}
       <div className="flex justify-end mt-4">
-        <button className="btn btn-primary">Atualizar</button>
+        <button onClick={} className="btn btn-primary">Atualizar</button>
       </div>
     </div>
   );

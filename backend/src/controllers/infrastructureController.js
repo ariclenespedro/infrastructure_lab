@@ -35,7 +35,7 @@ const infrastructure = {
         designation,
         nao_funcional,
         funcional,
-        school: school ,
+        school: school,
         total
       });
 

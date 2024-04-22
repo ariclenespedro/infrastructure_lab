@@ -43,7 +43,7 @@ export const createInfrastructure = createAsyncThunk(
         return  res.data;
         
       } catch (error) {
-        console.log('response schoolActions errors:',error);
+        console.log('response infrastructureActions errors:',error);
         throw new Error(error.message);
       }
     },

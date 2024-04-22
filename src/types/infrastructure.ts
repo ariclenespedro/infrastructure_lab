@@ -4,5 +4,6 @@ export type infrastructureType =
       funcional: number;
       nao_funcional: number;
       total: number;
+      _id: string;
     }
   
