@@ -1,8 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sistema de Gestão de Infraestruturas de Escolas 
 
-## Getting Started
+O sistema tem como objectivo e finalidade, gerir as infraestruturas de escolas, infraestruturas essas que são consideradas com salas de aulas e/ou laboratórios.
+Essas salas ou laboratórios devem ser classificados como funcionais ou não funcionais para melhor controle.
 
-First, run the development server:
+As escolas são cadastradas juntamente com as suas infraestruturas.
+
+## Estrutura do Projecto e Tecnologias utilizadas
+
+O projecto possui uma pasta principal que contém o frontend do projecto e uma pasta `Backend` onde contém o backend do sistema.
+
+### Tecnologias utilizadas
+
+__FRONT-END__
+
+* Next js Framework 
+* Tailwind
+
+__BACK-END__
+
+* Node js 
+* Express
+
+__BASE DE DADOS__
+
+* MongoDB 
+
+__DEPLPOYMENT__
+
+* Vercel: [infrastructure_lab](https://infrastructure-lab.vercel.app/) 
+
+
+
+Para instalação local, execute no terminal:
 
 ```bash
 npm run dev
@@ -14,23 +43,12 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir [http://localhost:3000](http://localhost:3000) com o browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Aceda à pasta backend e faça o mesmo para instalar o backend.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Direitos reservados - `Ariclenes Pedro - DEV ` 
+#### Contacts
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* [linkedin](https://www.linkedin.com/in/ariclenes-pedro-19372222b/)
+* [github](https://github.com/ariclenespedro)
